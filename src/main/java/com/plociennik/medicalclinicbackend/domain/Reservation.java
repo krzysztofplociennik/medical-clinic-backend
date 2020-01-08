@@ -1,7 +1,8 @@
 package com.plociennik.medicalclinicbackend.domain;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
-
+@Entity(name = "reservations")
 public class Reservation {
     private Long id;
     private LocalDateTime time;
@@ -17,6 +18,8 @@ public class Reservation {
 
     public Reservation() {}
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -33,6 +36,8 @@ public class Reservation {
         this.time = time;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
     public Doctor getDoctor() {
         return doctor;
     }
@@ -41,6 +46,8 @@ public class Reservation {
         this.doctor = doctor;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "patient_id")
     public Patient getPatient() {
         return patient;
     }

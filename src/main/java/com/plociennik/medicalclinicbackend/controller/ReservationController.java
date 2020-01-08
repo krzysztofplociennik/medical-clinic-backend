@@ -1,13 +1,11 @@
 package com.plociennik.medicalclinicbackend.controller;
-import com.plociennik.medicalclinicbackend.domain.Reservation;
 import com.plociennik.medicalclinicbackend.domain.ReservationDto;
+import com.plociennik.medicalclinicbackend.exceptions.ReservationNotFound;
 import com.plociennik.medicalclinicbackend.mapper.ReservationsMapper;
-import com.plociennik.medicalclinicbackend.repository.ReservationRepository;
 import com.plociennik.medicalclinicbackend.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -19,28 +17,28 @@ public class ReservationController {
     private ReservationsMapper mapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "getReservations")
-    public List<ReservationDto> getAllPatientReservations(Long patientId) {
+    public List<ReservationDto> getAllPatientReservations() {
         return mapper.mapToReservationDtoList(service.getAllReservations());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getReservation")
-    public Reservation getReservation(Long reservationId) {
-        return new Reservation();
+    public ReservationDto getReservation(@RequestParam Long reservationId) throws ReservationNotFound {
+        return mapper.mapToReservationDto(service.getReservation(reservationId).orElseThrow(ReservationNotFound::new));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "makeReservation")
-    public Reservation makeReservation() {
-        return new Reservation();
+    public void makeReservation(@RequestBody ReservationDto reservationDto) {
+        service.makeReservation(mapper.mapToReservation(reservationDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "changeReservation")
-    public Reservation changeReservation(Long reservationId) {
-        return new Reservation();
+    public ReservationDto changeReservation(@RequestBody ReservationDto reservationDto) {
+        return mapper.mapToReservationDto(service.makeReservation(mapper.mapToReservation(reservationDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "cancelReservation")
-    public String cancelReservation(Long reservationId) {
-        return "Reservation has been canceled!";
+    public void cancelReservation(@RequestParam Long reservationId) {
+        service.cancelReservation(reservationId);
     }
 
 }
