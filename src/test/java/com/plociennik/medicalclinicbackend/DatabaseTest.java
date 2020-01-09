@@ -1,6 +1,5 @@
 package com.plociennik.medicalclinicbackend;
-import com.plociennik.medicalclinicbackend.domain.Reservation;
-import com.plociennik.medicalclinicbackend.repository.ReservationRepository;
+import com.plociennik.medicalclinicbackend.service.ReservationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +10,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class DatabaseTest {
     @Autowired
-    private ReservationRepository reservationRepository;
+    private ReservationService service;
     @Test
     public void whatever() {
-        Reservation reservation = new Reservation();
-        reservationRepository.save(reservation);
-        reservationRepository.findAll();
+        //Reservation reservation = new Reservation();
+        //reservationRepository.save(reservation);
+        System.out.println(service.getAllReservations().size());
     }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ReservationsMapper {
+public class ReservationMapper {
 
     public Reservation mapToReservation(final ReservationDto reservationDto) {
             return new Reservation(

@@ -7,23 +7,23 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class DatabaseService {
-    //@Autowired
-    private ReservationRepository reservationRepository;
+public class ReservationService {
+    @Autowired
+    private ReservationRepository repository;
 
     public List<Reservation> getAllReservations() {
-        return reservationRepository.findAll();
+        return repository.findAll();
     }
 
     public Optional<Reservation> getReservation(final Long id) {
-        return reservationRepository.findById(id);
+        return repository.findById(id);
     }
 
-    public Reservation makeReservation(final Reservation reservation) {
-        return reservationRepository.save(reservation);
+    public Reservation createReservation(final Reservation reservation) {
+        return repository.save(reservation);
     }
 
-    public void cancelReservation(final Long id) {
-       reservationRepository.deleteById(id);
+    public void deleteReservation(final Long id) {
+        repository.deleteById(id);
     }
 }
