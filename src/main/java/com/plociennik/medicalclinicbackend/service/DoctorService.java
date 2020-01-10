@@ -19,11 +19,15 @@ public class DoctorService {
         return repository.findById(id);
     }
 
-    public Doctor createDoctor(final Doctor doctor) {
+    public Doctor saveDoctor(final Doctor doctor) {
         return repository.save(doctor);
     }
 
     public void deleteDoctor(final Long id) {
         repository.deleteById(id);
+    }
+
+    public Doctor getDoctorFromName(final String name) {
+        return repository.findByName(name);
     }
 }

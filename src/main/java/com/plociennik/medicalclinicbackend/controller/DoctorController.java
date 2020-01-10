@@ -27,12 +27,12 @@ public class DoctorController {
 
     @RequestMapping(method = RequestMethod.POST, value = "createDoctor")
     public void createDoctor(@RequestBody DoctorDto doctorDto) {
-        service.createDoctor(mapper.mapToDoctor(doctorDto));
+        service.saveDoctor(mapper.mapToDoctor(doctorDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateDoctor")
     public DoctorDto updateDoctor(@RequestBody DoctorDto doctorDto) {
-        return mapper.mapToDoctorDto(service.createDoctor(mapper.mapToDoctor(doctorDto)));
+        return mapper.mapToDoctorDto(service.saveDoctor(mapper.mapToDoctor(doctorDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteDoctor")

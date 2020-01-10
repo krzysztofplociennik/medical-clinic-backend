@@ -27,12 +27,12 @@ public class ReservationController {
 
     @RequestMapping(method = RequestMethod.POST, value = "createReservation")
     public void createReservation(@RequestBody ReservationDto reservationDto) {
-        service.createReservation(mapper.mapToReservation(reservationDto));
+        service.saveReservation(mapper.mapToReservation(reservationDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateReservation")
     public ReservationDto updateReservation(@RequestBody ReservationDto reservationDto) {
-        return mapper.mapToReservationDto(service.createReservation(mapper.mapToReservation(reservationDto)));
+        return mapper.mapToReservationDto(service.saveReservation(mapper.mapToReservation(reservationDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteReservation")

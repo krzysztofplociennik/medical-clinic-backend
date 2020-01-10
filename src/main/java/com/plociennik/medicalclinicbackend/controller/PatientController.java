@@ -28,12 +28,12 @@ public class PatientController {
 
     @RequestMapping(method = RequestMethod.POST, value = "createPatient")
     public void createPatient(@RequestBody PatientDto patientDto) {
-        service.createPatient(mapper.mapToPatient(patientDto));
+        service.savePatient(mapper.mapToPatient(patientDto));
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updatePatient")
     public PatientDto updatePatient(@RequestBody PatientDto patientDto) {
-        return mapper.mapToPatientDto(service.createPatient(mapper.mapToPatient(patientDto)));
+        return mapper.mapToPatientDto(service.savePatient(mapper.mapToPatient(patientDto)));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deletePatient")

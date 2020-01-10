@@ -19,7 +19,7 @@ public class ReservationService {
         return repository.findById(id);
     }
 
-    public Reservation createReservation(final Reservation reservation) {
+    public Reservation saveReservation(final Reservation reservation) {
         return repository.save(reservation);
     }
 

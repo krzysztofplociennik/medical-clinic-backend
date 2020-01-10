@@ -19,7 +19,7 @@ public class PatientService {
         return repository.findById(id);
     }
 
-    public Patient createPatient(final Patient patient) {
+    public Patient savePatient(final Patient patient) {
         return repository.save(patient);
     }
 
