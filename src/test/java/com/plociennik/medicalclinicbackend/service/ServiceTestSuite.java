@@ -2,7 +2,6 @@ package com.plociennik.medicalclinicbackend.service;
 import com.plociennik.medicalclinicbackend.domain.Doctor;
 import com.plociennik.medicalclinicbackend.domain.Patient;
 import com.plociennik.medicalclinicbackend.domain.Reservation;
-import com.plociennik.medicalclinicbackend.repository.DoctorRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,8 @@ public class ServiceTestSuite {
         long reservationIndex = reservationService.getAllReservations().get(size-1).getId();
         int result = reservationService.getAllReservations().get(size-1).getTime().getHour();
         //Then
-        assertEquals(1, reservationService.getAllReservations().size());
+        //assertEquals(1, reservationService.getAllReservations().size());
+        System.out.println("The size of reservations repository: " + size);
         assertEquals(19, result);
         //Clean up
         reservationService.deleteReservation(reservationIndex);
@@ -51,7 +51,8 @@ public class ServiceTestSuite {
         long patientIndex = patientService.getAllPatients().get(size-1).getId();
         String result = patientService.getAllPatients().get(size-1).getPhoneNumber();
         //Then
-        assertEquals(3, patientService.getAllPatients().size());
+        //assertEquals(3, patientService.getAllPatients().size());
+        System.out.println("The size of patients repository: " + size);
         assertEquals("525602556", result);
         //Clean up
         patientService.deletePatient(patientIndex);
@@ -61,7 +62,7 @@ public class ServiceTestSuite {
         //Given
         Doctor doctor = new Doctor();
         doctor.setName("Gregg Norton");
-        doctor.setMail("gressnorton@gmail.com");
+        doctor.setMail("greggnorton@gmail.com");
         doctor.setRating(4.4);
         //When
         doctorService.saveDoctor(doctor);
@@ -69,7 +70,8 @@ public class ServiceTestSuite {
         long doctorIndex = doctorService.getAllDoctors().get(size-1).getId();
         double result = doctorService.getAllDoctors().get(size-1).getRating();
         //Then
-        assertEquals(2, doctorService.getAllDoctors().size());
+        //assertEquals(2, doctorService.getAllDoctors().size());
+        System.out.println("The size of doctors repository: " + size);
         assertEquals(4.4, result, 0.1);
         //Clean up
         doctorService.deleteDoctor(doctorIndex);
@@ -92,11 +94,34 @@ public class ServiceTestSuite {
         reservation.setDoctor(doctor);
         reservationService.saveReservation(reservation);
         //Then
+        System.out.println("The size of reservations repository: " + reservationService.getAllReservations().size());
+        System.out.println("The size of patients repository: " + patientService.getAllPatients().size());
+        System.out.println("The size of doctors repository: " + doctorService.getAllDoctors().size());
         //Clean up
         reservationService.deleteReservation(reservationService.getAllReservations().get(reservationService.getAllReservations().size()-1).getId());
+        patientService.deletePatient(patientService.getAllPatients().get(patientService.getAllPatients().size()-1).getId());
+        doctorService.deleteDoctor(doctorService.getAllDoctors().get(doctorService.getAllDoctors().size()-1).getId());
     }
     @Test
     public void findingRecords() {
         System.out.println(doctorService.getDoctorFromName("Jessica Hugh").getName());
+    }
+    @Test
+    public void init() {
+        Reservation reservation1 = new Reservation();
+        reservation1.setTime(LocalDateTime.of(2020, Month.APRIL, 21, 19, 40, 00));
+        reservation1.setDoctor(doctorService.getDoctorFromName("Jessica Hugh"));
+        reservation1.setPatient(patientService.getPatientFromName("Sandra Ham"));
+        reservationService.saveReservation(reservation1);
+        Reservation reservation2 = new Reservation();
+        reservation2.setTime(LocalDateTime.of(2020, Month.APRIL, 22, 9, 00, 00));
+        reservation2.setDoctor(doctorService.getDoctorFromName("Jessica Hugh"));
+        reservation2.setPatient(patientService.getPatientFromName("Sam Toronto"));
+        reservationService.saveReservation(reservation2);
+        Reservation reservation3 = new Reservation();
+        reservation3.setTime(LocalDateTime.of(2020, Month.APRIL, 22, 10, 00, 00));
+        reservation3.setDoctor(doctorService.getDoctorFromName("John Doe"));
+        reservation3.setPatient(patientService.getPatientFromName("Sandra Ham"));
+        reservationService.saveReservation(reservation3);
     }
 }

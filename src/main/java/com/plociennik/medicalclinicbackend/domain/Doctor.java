@@ -31,6 +31,7 @@ public class Doctor {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -39,6 +40,7 @@ public class Doctor {
         this.name = name;
     }
 
+    @Column(name = "rating")
     public double getRating() {
         return rating;
     }
@@ -47,6 +49,7 @@ public class Doctor {
         this.rating = rating;
     }
 
+    @Column(name = "mail")
     public String getMail() {
         return mail;
     }

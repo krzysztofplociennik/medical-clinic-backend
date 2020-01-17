@@ -31,6 +31,7 @@ public class Patient {
         this.id = id;
     }
 
+    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -39,6 +40,7 @@ public class Patient {
         this.name = name;
     }
 
+    @Column(name = "mail")
     public String getMail() {
         return mail;
     }
@@ -47,6 +49,7 @@ public class Patient {
         this.mail = mail;
     }
 
+    @Column(name = "phone_number")
     public String getPhoneNumber() {
         return phoneNumber;
     }
