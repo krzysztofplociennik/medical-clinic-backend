@@ -1,6 +1,4 @@
 package com.plociennik.medicalclinicbackend.domain;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class PatientDto {
@@ -8,13 +6,14 @@ public class PatientDto {
     private String name;
     private String mail;
     private String phoneNumber;
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<ReservationDto> reservations;
 
-    public PatientDto(Long id, String name, String mail, String phoneNumber) {
+    public PatientDto(Long id, String name, String mail, String phoneNumber, List<ReservationDto> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
+        this.reservations = reservations;
     }
 
     public PatientDto() {
@@ -52,11 +51,11 @@ public class PatientDto {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Reservation> getReservations() {
+    public List<ReservationDto> getReservations() {
         return reservations;
     }
 
-    public void setReservations(List<Reservation> reservations) {
+    public void setReservations(List<ReservationDto> reservations) {
         this.reservations = reservations;
     }
 }

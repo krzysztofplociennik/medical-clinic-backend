@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 public class ReservationDto {
     private Long id;
     private LocalDateTime time;
-    private Patient patient;
-    private Doctor doctor;
+    private Long patientId;
+    private Long doctorId;
 
-    public ReservationDto(Long id, LocalDateTime time, Patient patient, Doctor doctor) {
+    public ReservationDto(Long id, LocalDateTime time, Long patientId, Long doctorId) {
         this.id = id;
         this.time = time;
-        this.patient = patient;
-        this.doctor = doctor;
+        this.patientId = patientId;
+        this.doctorId = doctorId;
     }
 
     public ReservationDto() {
@@ -34,19 +34,19 @@ public class ReservationDto {
         this.time = time;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public Long getPatientId() {
+        return patientId;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatient(Long id) {
+        this.patientId = id;
     }
 
-    public Doctor getDoctor() {
-        return doctor;
+    public Long getDoctorId() {
+        return doctorId;
     }
 
-    public void setDoctor(Doctor doctor) {
-        this.doctor = doctor;
+    public void setDoctor(Long id) {
+        this.doctorId = id;
     }
 }

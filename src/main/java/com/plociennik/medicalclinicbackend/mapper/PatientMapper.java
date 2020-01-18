@@ -1,18 +1,25 @@
 package com.plociennik.medicalclinicbackend.mapper;
+import com.plociennik.medicalclinicbackend.domain.Doctor;
+import com.plociennik.medicalclinicbackend.domain.DoctorDto;
 import com.plociennik.medicalclinicbackend.domain.Patient;
 import com.plociennik.medicalclinicbackend.domain.PatientDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class PatientMapper {
+    @Autowired
+    private ReservationMapper reservationMapper;
+
     public Patient mapToPatient(final PatientDto patientDto) {
         return new Patient(
                 patientDto.getId(),
                 patientDto.getName(),
                 patientDto.getMail(),
-                patientDto.getPhoneNumber()
+                patientDto.getPhoneNumber(),
+                reservationMapper.mapToReservationList(patientDto.getReservations())
         );
     }
 
@@ -21,7 +28,8 @@ public class PatientMapper {
                 patient.getId(),
                 patient.getName(),
                 patient.getMail(),
-                patient.getPhoneNumber()
+                patient.getPhoneNumber(),
+                reservationMapper.mapToReservationDtoList(patient.getReservations())
         );
     }
 
@@ -30,7 +38,8 @@ public class PatientMapper {
                 .map(patient -> new PatientDto(patient.getId(),
                         patient.getName(),
                         patient.getMail(),
-                        patient.getPhoneNumber()))
+                        patient.getPhoneNumber(),
+                        reservationMapper.mapToReservationDtoList(patient.getReservations())))
                 .collect(Collectors.toList());
     }
 }

@@ -9,13 +9,14 @@ public class Patient {
     private String name;
     private String mail;
     private String phoneNumber;
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations;
 
-    public Patient(Long id, String name, String mail, String phoneNumber) {
+    public Patient(Long id, String name, String mail, String phoneNumber, List<Reservation> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
+        this.reservations = reservations;
     }
 
     public Patient() {
@@ -62,7 +63,7 @@ public class Patient {
             targetEntity = Reservation.class,
             mappedBy = "patient",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     public List<Reservation> getReservations() {
         return reservations;

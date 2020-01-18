@@ -8,13 +8,14 @@ public class DoctorDto {
     private String name;
     private String mail;
     private double rating;
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<ReservationDto> reservations;
 
-    public DoctorDto(Long id, String name, String mail, double rating) {
+    public DoctorDto(Long id, String name, String mail, double rating, List<ReservationDto> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.rating = rating;
+        this.reservations = reservations;
     }
 
     public DoctorDto() {
@@ -52,11 +53,11 @@ public class DoctorDto {
         this.rating = rating;
     }
 
-    public List<Reservation> getReservations() {
+    public List<ReservationDto> getReservations() {
         return reservations;
     }
 
-    public void setReservations(List<Reservation> reservations) {
+    public void setReservations(List<ReservationDto> reservations) {
         this.reservations = reservations;
     }
 }

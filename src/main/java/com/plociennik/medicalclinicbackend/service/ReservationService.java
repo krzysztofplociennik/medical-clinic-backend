@@ -1,4 +1,5 @@
 package com.plociennik.medicalclinicbackend.service;
+import com.plociennik.medicalclinicbackend.domain.Doctor;
 import com.plociennik.medicalclinicbackend.domain.Reservation;
 import com.plociennik.medicalclinicbackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class ReservationService {
     }
 
     public Reservation saveReservation(final Reservation reservation) {
+        reservation.getDoctor().getReservations().add(reservation);
+        reservation.getDoctor().setReservations(reservation.getDoctor().getReservations());
+        reservation.getPatient().getReservations().add(reservation);
+        reservation.getPatient().setReservations(reservation.getPatient().getReservations());
         return repository.save(reservation);
     }
 
