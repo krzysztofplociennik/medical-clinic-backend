@@ -1,6 +1,6 @@
 <h1> Medical Clinic Project </h1>
 
-Projekt przychodni medycznej. Jest w dużym stopniu nieskończony, ale chętnie poznałbym jakikolwiek feedback, jeśli jakiś by się znalazł.
+Projekt przychodni medycznej. Jest w dużym stopniu nieskończony.
 
 **Instrukcja**
 
