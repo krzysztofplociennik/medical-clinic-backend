@@ -1,15 +1,14 @@
 package com.plociennik.medicalclinicbackend.domain;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity(name = "reservations")
 public class Reservation {
     private Long id;
-    private LocalDateTime time;
+    private String time;
     private Patient patient;
     private Doctor doctor;
 
-    public Reservation(Long id, LocalDateTime time, Patient patient, Doctor doctor) {
+    public Reservation(Long id, String time, Patient patient, Doctor doctor) {
         this.id = id;
         this.time = time;
         this.patient = patient;
@@ -28,11 +27,11 @@ public class Reservation {
         this.id = id;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

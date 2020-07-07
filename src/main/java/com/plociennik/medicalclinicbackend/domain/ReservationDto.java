@@ -1,14 +1,12 @@
 package com.plociennik.medicalclinicbackend.domain;
 
-import java.time.LocalDateTime;
-
 public class ReservationDto {
     private Long id;
-    private LocalDateTime time;
+    private String time;
     private Long patientId;
     private Long doctorId;
 
-    public ReservationDto(Long id, LocalDateTime time, Long patientId, Long doctorId) {
+    public ReservationDto(Long id, String time, Long patientId, Long doctorId) {
         this.id = id;
         this.time = time;
         this.patientId = patientId;
@@ -26,11 +24,11 @@ public class ReservationDto {
         this.id = id;
     }
 
-    public LocalDateTime getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

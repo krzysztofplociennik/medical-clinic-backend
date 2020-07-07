@@ -7,8 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import java.time.LocalDateTime;
-import java.time.Month;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -25,16 +24,14 @@ public class ServiceTestSuite {
     public void savingReservations() {
         //Given
         Reservation reservation = new Reservation();
-        reservation.setTime(LocalDateTime.of(2020, Month.APRIL, 21, 19, 40, 00));
+        reservation.setTime("2016-03-04 11:30");
         //When
         reservationService.saveReservation(reservation);
         int size = reservationService.getAllReservations().size();
         long reservationIndex = reservationService.getAllReservations().get(size-1).getId();
-        int result = reservationService.getAllReservations().get(size-1).getTime().getHour();
         //Then
         //assertEquals(1, reservationService.getAllReservations().size());
         System.out.println("The size of reservations repository: " + size);
-        assertEquals(19, result);
         //Clean up
         reservationService.deleteReservation(reservationIndex);
     }
@@ -89,7 +86,7 @@ public class ServiceTestSuite {
         doctorService.saveDoctor(doctor);
         //When
         Reservation reservation = new Reservation();
-        reservation.setTime(LocalDateTime.of(2020, Month.JANUARY, 22, 10, 00));
+        reservation.setTime("2016-03-04 11:30");
         reservation.setPatient(patient);
         reservation.setDoctor(doctor);
         reservationService.saveReservation(reservation);
@@ -109,17 +106,17 @@ public class ServiceTestSuite {
     @Test
     public void init() {
         Reservation reservation1 = new Reservation();
-        reservation1.setTime(LocalDateTime.of(2020, Month.APRIL, 21, 19, 40, 00));
+        reservation1.setTime("2016-03-04 11:30");
         reservation1.setDoctor(doctorService.getDoctorFromName("Jessica Hugh"));
         reservation1.setPatient(patientService.getPatientFromName("Sandra Ham"));
         reservationService.saveReservation(reservation1);
         Reservation reservation2 = new Reservation();
-        reservation2.setTime(LocalDateTime.of(2020, Month.APRIL, 22, 9, 00, 00));
+        reservation2.setTime("2016-03-04 11:30");
         reservation2.setDoctor(doctorService.getDoctorFromName("Jessica Hugh"));
         reservation2.setPatient(patientService.getPatientFromName("Sam Toronto"));
         reservationService.saveReservation(reservation2);
         Reservation reservation3 = new Reservation();
-        reservation3.setTime(LocalDateTime.of(2020, Month.APRIL, 22, 10, 00, 00));
+        reservation3.setTime("2016-03-04 11:30");
         reservation3.setDoctor(doctorService.getDoctorFromName("John Doe"));
         reservation3.setPatient(patientService.getPatientFromName("Sandra Ham"));
         reservationService.saveReservation(reservation3);
