@@ -1,6 +1,5 @@
 package com.plociennik.medicalclinicbackend.domain;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "patients")
@@ -62,7 +61,7 @@ public class Patient {
     @OneToMany(
             targetEntity = Reservation.class,
             mappedBy = "patient",
-            cascade = CascadeType.ALL,
+            cascade = CascadeType.REMOVE,
             fetch = FetchType.EAGER
     )
     public List<Reservation> getReservations() {

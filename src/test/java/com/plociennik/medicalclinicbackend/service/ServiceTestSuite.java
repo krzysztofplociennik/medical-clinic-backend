@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.assertEquals;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ServiceTestSuite {
@@ -30,95 +28,45 @@ public class ServiceTestSuite {
         int size = reservationService.getAllReservations().size();
         long reservationIndex = reservationService.getAllReservations().get(size-1).getId();
         //Then
-        //assertEquals(1, reservationService.getAllReservations().size());
         System.out.println("The size of reservations repository: " + size);
         //Clean up
         reservationService.deleteReservation(reservationIndex);
     }
+
     @Test
     public void savingPatients() {
-        //Given
         Patient patient = new Patient();
         patient.setName("Antonio Cumia");
         patient.setMail("antoniocumia@gmail.com");
         patient.setPhoneNumber("525602556");
-        //When
         patientService.savePatient(patient);
-        int size = patientService.getAllPatients().size();
-        long patientIndex = patientService.getAllPatients().get(size-1).getId();
-        String result = patientService.getAllPatients().get(size-1).getPhoneNumber();
-        //Then
-        //assertEquals(3, patientService.getAllPatients().size());
-        System.out.println("The size of patients repository: " + size);
-        assertEquals("525602556", result);
-        //Clean up
-        patientService.deletePatient(patientIndex);
     }
+
     @Test
     public void savingDoctors() {
-        //Given
         Doctor doctor = new Doctor();
-        doctor.setName("Gregg Norton");
-        doctor.setMail("greggnorton@gmail.com");
-        doctor.setRating(4.4);
-        //When
+        doctor.setName("X");
+        doctor.setMail("x@gmail.com");
         doctorService.saveDoctor(doctor);
-        int size = doctorService.getAllDoctors().size();
-        long doctorIndex = doctorService.getAllDoctors().get(size-1).getId();
-        double result = doctorService.getAllDoctors().get(size-1).getRating();
-        //Then
-        //assertEquals(2, doctorService.getAllDoctors().size());
-        System.out.println("The size of doctors repository: " + size);
-        assertEquals(4.4, result, 0.1);
-        //Clean up
-        doctorService.deleteDoctor(doctorIndex);
     }
-    @Test
-    public void whatever() {
-        //Given
-        Patient patient = new Patient();
-        patient.setName("Ryan Jackman");
-        patient.setPhoneNumber("213354890");
-        patientService.savePatient(patient);
-        Doctor doctor = new Doctor();
-        doctor.setName("Paul Burr");
-        doctor.setRating(4.3);
-        doctorService.saveDoctor(doctor);
-        //When
-        Reservation reservation = new Reservation();
-        reservation.setTime("2016-03-04 11:30");
-        reservation.setPatient(patient);
-        reservation.setDoctor(doctor);
-        reservationService.saveReservation(reservation);
-        //Then
-        System.out.println("The size of reservations repository: " + reservationService.getAllReservations().size());
-        System.out.println("The size of patients repository: " + patientService.getAllPatients().size());
-        System.out.println("The size of doctors repository: " + doctorService.getAllDoctors().size());
-        //Clean up
-        reservationService.deleteReservation(reservationService.getAllReservations().get(reservationService.getAllReservations().size()-1).getId());
-        patientService.deletePatient(patientService.getAllPatients().get(patientService.getAllPatients().size()-1).getId());
-        doctorService.deleteDoctor(doctorService.getAllDoctors().get(doctorService.getAllDoctors().size()-1).getId());
-    }
+
     @Test
     public void findingRecords() {
         System.out.println(doctorService.getDoctorFromName("Jessica Hugh").getName());
     }
+
     @Test
-    public void init() {
-        Reservation reservation1 = new Reservation();
-        reservation1.setTime("2016-03-04 11:30");
-        reservation1.setDoctor(doctorService.getDoctorFromName("Jessica Hugh"));
-        reservation1.setPatient(patientService.getPatientFromName("Sandra Ham"));
-        reservationService.saveReservation(reservation1);
-        Reservation reservation2 = new Reservation();
-        reservation2.setTime("2016-03-04 11:30");
-        reservation2.setDoctor(doctorService.getDoctorFromName("Jessica Hugh"));
-        reservation2.setPatient(patientService.getPatientFromName("Sam Toronto"));
-        reservationService.saveReservation(reservation2);
-        Reservation reservation3 = new Reservation();
-        reservation3.setTime("2016-03-04 11:30");
-        reservation3.setDoctor(doctorService.getDoctorFromName("John Doe"));
-        reservation3.setPatient(patientService.getPatientFromName("Sandra Ham"));
-        reservationService.saveReservation(reservation3);
+    public void createPatient() {
+        Patient patient = new Patient();
+        patient.setName("Jamilyn Harrison");
+        patient.setPhoneNumber("142122678");
+        patientService.savePatient(patient);
+    }
+
+    @Test
+    public void createDoctor() {
+        Doctor doctor = new Doctor();
+        doctor.setName("Jim Keyb");
+        doctorService.saveDoctor(doctor);
     }
 }
