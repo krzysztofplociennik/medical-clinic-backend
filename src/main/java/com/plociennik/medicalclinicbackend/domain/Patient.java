@@ -1,6 +1,10 @@
 package com.plociennik.medicalclinicbackend.domain;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity(name = "patients")
 public class Patient {
@@ -8,17 +12,22 @@ public class Patient {
     private String name;
     private String mail;
     private String phoneNumber;
+    private Set<Rating> ratings;
     private List<Reservation> reservations;
 
-    public Patient(Long id, String name, String mail, String phoneNumber, List<Reservation> reservations) {
+    public Patient(Long id, String name, String mail, String phoneNumber, Set<Rating> ratings, List<Reservation> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
+        this.ratings = ratings;
         this.reservations = reservations;
     }
 
     public Patient() {
+        if (ratings == null) {
+            ratings = new LinkedHashSet<>();
+        }
     }
 
     @Id
@@ -59,11 +68,25 @@ public class Patient {
     }
 
     @OneToMany(
+            targetEntity = Rating.class,
+            mappedBy = "patient",
+            cascade = CascadeType.REMOVE
+    )
+    @LazyCollection(LazyCollectionOption.FALSE)
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    @OneToMany(
             targetEntity = Reservation.class,
             mappedBy = "patient",
-            cascade = CascadeType.REMOVE,
-            fetch = FetchType.EAGER
+            cascade = CascadeType.REMOVE
     )
+    @LazyCollection(LazyCollectionOption.FALSE)
     public List<Reservation> getReservations() {
         return reservations;
     }

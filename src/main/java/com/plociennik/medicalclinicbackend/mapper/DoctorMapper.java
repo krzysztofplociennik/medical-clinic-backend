@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 public class DoctorMapper {
     @Autowired
     private ReservationMapper reservationMapper;
+    @Autowired
+    private RatingMapper ratingMapper;
 
     public Doctor mapToDoctor(final DoctorDto doctorDto) {
         return new Doctor(
@@ -17,6 +19,7 @@ public class DoctorMapper {
                 doctorDto.getName(),
                 doctorDto.getMail(),
                 doctorDto.getRating(),
+                ratingMapper.mapToRatingSet(doctorDto.getRatings()),
                 reservationMapper.mapToReservationList(doctorDto.getReservations())
         );
     }
@@ -27,16 +30,19 @@ public class DoctorMapper {
                 doctor.getName(),
                 doctor.getMail(),
                 doctor.getRating(),
+                ratingMapper.mapToRatingDtoSet(doctor.getRatings()),
                 reservationMapper.mapToReservationDtoList(doctor.getReservations())
         );
     }
 
     public List<DoctorDto> mapToDoctorDtoList(final List<Doctor> doctorList) {
         return doctorList.stream()
-                .map(doctor -> new DoctorDto(doctor.getId(),
+                .map(doctor -> new DoctorDto(
+                        doctor.getId(),
                         doctor.getName(),
                         doctor.getMail(),
                         doctor.getRating(),
+                        ratingMapper.mapToRatingDtoSet(doctor.getRatings()),
                         reservationMapper.mapToReservationDtoList(doctor.getReservations())))
                 .collect(Collectors.toList());
     }

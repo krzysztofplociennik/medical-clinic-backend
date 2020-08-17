@@ -6,4 +6,6 @@ import java.util.List;
 public interface ReservationRepository extends CrudRepository<Reservation, Long> {
     @Override
     List<Reservation> findAll();
+
+    long count();
 }

@@ -1,6 +1,4 @@
 package com.plociennik.medicalclinicbackend.mapper;
-import com.plociennik.medicalclinicbackend.domain.Doctor;
-import com.plociennik.medicalclinicbackend.domain.DoctorDto;
 import com.plociennik.medicalclinicbackend.domain.Patient;
 import com.plociennik.medicalclinicbackend.domain.PatientDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +10,8 @@ import java.util.stream.Collectors;
 public class PatientMapper {
     @Autowired
     private ReservationMapper reservationMapper;
+    @Autowired
+    private RatingMapper ratingMapper;
 
     public Patient mapToPatient(final PatientDto patientDto) {
         return new Patient(
@@ -19,6 +19,7 @@ public class PatientMapper {
                 patientDto.getName(),
                 patientDto.getMail(),
                 patientDto.getPhoneNumber(),
+                ratingMapper.mapToRatingSet(patientDto.getRatings()),
                 reservationMapper.mapToReservationList(patientDto.getReservations())
         );
     }
@@ -29,16 +30,19 @@ public class PatientMapper {
                 patient.getName(),
                 patient.getMail(),
                 patient.getPhoneNumber(),
+                ratingMapper.mapToRatingDtoSet(patient.getRatings()),
                 reservationMapper.mapToReservationDtoList(patient.getReservations())
         );
     }
 
     public List<PatientDto> mapToPatientDtoList(final List<Patient> patientList) {
         return patientList.stream()
-                .map(patient -> new PatientDto(patient.getId(),
+                .map(patient -> new PatientDto(
+                        patient.getId(),
                         patient.getName(),
                         patient.getMail(),
                         patient.getPhoneNumber(),
+                        ratingMapper.mapToRatingDtoSet(patient.getRatings()),
                         reservationMapper.mapToReservationDtoList(patient.getReservations())))
                 .collect(Collectors.toList());
     }

@@ -1,5 +1,4 @@
 package com.plociennik.medicalclinicbackend.service;
-import com.plociennik.medicalclinicbackend.domain.Doctor;
 import com.plociennik.medicalclinicbackend.domain.Reservation;
 import com.plociennik.medicalclinicbackend.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;

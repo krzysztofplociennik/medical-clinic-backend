@@ -5,7 +5,6 @@ import com.plociennik.medicalclinicbackend.mapper.PatientMapper;
 import com.plociennik.medicalclinicbackend.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

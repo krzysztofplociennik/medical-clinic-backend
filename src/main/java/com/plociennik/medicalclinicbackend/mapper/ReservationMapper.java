@@ -33,21 +33,23 @@ public class ReservationMapper {
         );
     }
 
-    public List<ReservationDto> mapToReservationDtoList(final List<Reservation> reservationList) {
-        return reservationList.stream()
-                .map(reservation -> new ReservationDto(reservation.getId(),
-                                                        reservation.getTime(),
-                                                        reservation.getPatient().getId(),
-                                                        reservation.getDoctor().getId()))
+    public List<ReservationDto> mapToReservationDtoList(final List<Reservation> reservations) {
+        return reservations.stream()
+                .map(reservation -> new ReservationDto(
+                        reservation.getId(),
+                        reservation.getTime(),
+                        reservation.getPatient().getId(),
+                        reservation.getDoctor().getId()))
                 .collect(Collectors.toList());
     }
 
-    public List<Reservation> mapToReservationList(final List<ReservationDto> reservationDtos) {
-        return reservationDtos.stream()
-                .map(reservationDto -> new Reservation(reservationDto.getId(),
-                                                        reservationDto.getTime(),
-                                                        patientService.getPatient(reservationDto.getPatientId()).get(),
-                                                        doctorService.getDoctor(reservationDto.getDoctorId()).get()))
+    public List<Reservation> mapToReservationList(final List<ReservationDto> reservations) {
+        return reservations.stream()
+                .map(reservationDto -> new Reservation(
+                        reservationDto.getId(),
+                        reservationDto.getTime(),
+                        patientService.getPatient(reservationDto.getPatientId()).get(),
+                        doctorService.getDoctor(reservationDto.getDoctorId()).get()))
                 .collect(Collectors.toList());
     }
 }
