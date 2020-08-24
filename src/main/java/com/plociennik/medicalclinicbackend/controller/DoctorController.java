@@ -51,5 +51,4 @@ public class DoctorController {
     public void addRating(@RequestBody RatingDto ratingDto) {
         ratingService.saveRating(ratingMapper.mapToRating(ratingDto));
     }
-
 }
