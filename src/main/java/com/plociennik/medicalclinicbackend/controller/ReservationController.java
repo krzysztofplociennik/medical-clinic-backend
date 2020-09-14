@@ -39,5 +39,4 @@ public class ReservationController {
     public void deleteReservation(@RequestParam Long reservationId) {
         service.deleteReservation(reservationId);
     }
-
 }
