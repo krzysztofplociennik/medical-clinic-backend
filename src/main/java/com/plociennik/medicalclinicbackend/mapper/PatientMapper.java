@@ -19,6 +19,8 @@ public class PatientMapper {
                 patientDto.getName(),
                 patientDto.getMail(),
                 patientDto.getPhoneNumber(),
+                patientDto.getUsername(),
+                patientDto.getPassword(),
                 ratingMapper.mapToRatingSet(patientDto.getRatings()),
                 reservationMapper.mapToReservationList(patientDto.getReservations())
         );
@@ -30,6 +32,8 @@ public class PatientMapper {
                 patient.getName(),
                 patient.getMail(),
                 patient.getPhoneNumber(),
+                patient.getUsername(),
+                patient.getPassword(),
                 ratingMapper.mapToRatingDtoSet(patient.getRatings()),
                 reservationMapper.mapToReservationDtoList(patient.getReservations())
         );
@@ -42,6 +46,8 @@ public class PatientMapper {
                         patient.getName(),
                         patient.getMail(),
                         patient.getPhoneNumber(),
+                        patient.getUsername(),
+                        patient.getPassword(),
                         ratingMapper.mapToRatingDtoSet(patient.getRatings()),
                         reservationMapper.mapToReservationDtoList(patient.getReservations())))
                 .collect(Collectors.toList());

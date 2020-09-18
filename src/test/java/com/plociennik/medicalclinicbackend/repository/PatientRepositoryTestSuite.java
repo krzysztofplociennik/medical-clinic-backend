@@ -50,4 +50,8 @@ public class PatientRepositoryTestSuite {
 
         Assert.assertEquals(initialSize, sizeAfterDeleting);
     }
+
+    @Test
+    public void initData() {
+    }
 }

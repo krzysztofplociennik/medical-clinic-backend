@@ -59,4 +59,12 @@ public class DoctorRepositoryTestSuite {
 
         Assert.assertEquals(initialSize, sizeAfterDeleting);
     }
+
+    @Test
+    public void printingVariousData() {
+
+        for (Doctor doctor : doctorRepository.findAll()) {
+            System.out.println(doctor.getRating());
+        }
+    }
 }
