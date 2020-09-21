@@ -47,4 +47,14 @@ public class ReservationDto {
     public void setDoctor(Long id) {
         this.doctorId = id;
     }
+
+    @Override
+    public String toString() {
+        return "ReservationDto{" +
+                "id=" + id +
+                ", \ntime='" + time + '\'' +
+                ", \npatientId=" + patientId +
+                ", \ndoctorId=" + doctorId +
+                '}';
+    }
 }

@@ -2,6 +2,7 @@ package com.plociennik.medicalclinicbackend.domain;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,9 @@ public class Patient {
     public Patient() {
         if (ratings == null) {
             ratings = new LinkedHashSet<>();
+        }
+        if (reservations == null) {
+            reservations = new ArrayList<>();
         }
     }
 
@@ -120,5 +124,19 @@ public class Patient {
 
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", \nname='" + name + '\'' +
+                ", \nmail='" + mail + '\'' +
+                ", \nphoneNumber='" + phoneNumber + '\'' +
+                ", \nusername='" + username + '\'' +
+                ", \npassword='" + password + '\'' +
+                ", \nratings=" + ratings +
+                ", \nreservations=" + reservations +
+                '}';
     }
 }

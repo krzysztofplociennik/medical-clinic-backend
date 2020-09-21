@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PatientRepositoryTestSuite {
@@ -54,4 +56,25 @@ public class PatientRepositoryTestSuite {
     @Test
     public void initData() {
     }
+
+    @Test
+    public void deleteSpecificId() {
+        Optional<Patient> patient = patientRepository.findById(550L);
+        patientRepository.delete(patient.get());
+    }
+
+    @Test
+    public void editData() {
+        Optional<Patient> patient = patientRepository.findById(511L);
+        patient.get().setName("x");
+        patient.get().setPhoneNumber("x");
+        patientRepository.save(patient.get());
+    }
+
+    @Test
+    public void showSpecificData() {
+        System.out.println(patientRepository.findById(549L).get().getRatings().size());
+        System.out.println(patientRepository.findById(549L).get().getReservations().size());
+    }
+
 }

@@ -54,4 +54,14 @@ public class Reservation {
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", \ntime='" + time + '\'' +
+                ", \npatient=" + patient +
+                ", \ndoctor=" + doctor +
+                '}';
+    }
 }

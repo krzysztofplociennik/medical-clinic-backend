@@ -63,4 +63,15 @@ public class Rating {
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", \nvalue=" + value +
+                ", \ndoctor=" + doctor +
+                ", \npatient=" + patient +
+                ", \ndateTime='" + dateTime + '\'' +
+                '}';
+    }
 }

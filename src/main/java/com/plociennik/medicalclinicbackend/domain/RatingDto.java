@@ -57,4 +57,15 @@ public class RatingDto {
     public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
+
+    @Override
+    public String toString() {
+        return "RatingDto{" +
+                "id=" + id +
+                ", \nvalue=" + value +
+                ", \ndoctorId=" + doctorId +
+                ", \npatientId=" + patientId +
+                ", \ndateTime='" + dateTime + '\'' +
+                '}';
+    }
 }
