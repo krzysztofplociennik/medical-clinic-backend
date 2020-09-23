@@ -65,9 +65,8 @@ public class PatientRepositoryTestSuite {
 
     @Test
     public void editData() {
-        Optional<Patient> patient = patientRepository.findById(511L);
-        patient.get().setName("x");
-        patient.get().setPhoneNumber("x");
+        Optional<Patient> patient = patientRepository.findById(498L);
+        patient.get().setPassword("jaha");
         patientRepository.save(patient.get());
     }
 
