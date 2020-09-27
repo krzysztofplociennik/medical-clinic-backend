@@ -48,13 +48,12 @@ public class RatingRepositoryTestSuite {
 
         Rating rating = new Rating();
         ratingRepository.save(rating);
-        Long id = ratingRepository.findAll().get((int) initialSize).getId();
 
         long sizeAfterSaving = ratingRepository.count();
 
         Assert.assertEquals(initialSize + 1, sizeAfterSaving);
 
-        ratingRepository.deleteById(id);
+        ratingRepository.delete(rating);
         long sizeAfterDeleting = ratingRepository.count();
 
         Assert.assertEquals(initialSize, sizeAfterDeleting);
@@ -75,7 +74,6 @@ public class RatingRepositoryTestSuite {
         ratingRepository.save(rating);
         doctorRepository.save(doctor);
         patientRepository.save(patient);
-        Long id = ratingRepository.findAll().get((int) initialSizeOfRatings).getId();
 
         int sizeOfDoctorsRatingsAfterSaving = doctor.getRatings().size();
         int sizeOfPatientsRatingsAfterSaving = patient.getRatings().size();
@@ -84,7 +82,7 @@ public class RatingRepositoryTestSuite {
         Assert.assertEquals(sizeOfPatientsRatingsBeforeSaving + 1, sizeOfPatientsRatingsAfterSaving);
 
         //Clean up
-        ratingRepository.deleteById(id);
+        ratingRepository.delete(rating);
     }
 
     @Test
@@ -97,20 +95,6 @@ public class RatingRepositoryTestSuite {
         rating.setDoctor(doctor);
         rating.setPatient(patient);
         ratingRepository.save(rating);
-    }
-
-    @Test
-    public void deletingLastItem() {
-        if (ratingRepository.count() > 0) {
-            long count = ratingRepository.count();
-            long id = ratingRepository.findAll().get((int) (count - 1)).getId();
-            ratingRepository.deleteById(id);
-        }
-
-        for (Doctor instance : doctorRepository.findAll()) {
-            instance.setRating("Not yet rated");
-            doctorRepository.save(instance);
-        }
     }
 
     @Test

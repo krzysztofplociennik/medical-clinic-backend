@@ -67,4 +67,8 @@ public class DoctorRepositoryTestSuite {
             System.out.println(doctor.getRating());
         }
     }
+
+    @Test
+    public void editData() {
+    }
 }

@@ -1,17 +1,19 @@
 package com.plociennik.medicalclinicbackend.service;
+
 import com.plociennik.medicalclinicbackend.domain.Rating;
 import com.plociennik.medicalclinicbackend.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.List;
+
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class RatingService {
     @Autowired
     private RatingRepository repository;
 
-    public List<Rating> getAllRatings() {
+    public Set<Rating> getAllRatings() {
         return repository.findAll();
     }
 
