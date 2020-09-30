@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,5 +118,21 @@ public class RatingRepositoryTestSuite {
         for (Double rating : sortedPatientSet) {
             System.out.println("rating = " + rating);
         }
+    }
+
+    @Test
+    public void populate() {
+        String ex = "2020-11-10 14:00:00";
+        Patient patient = patientRepository.findById(575L).get();
+        Doctor doctor = doctorRepository.findById(580L).get();
+
+        Rating rating1 = new Rating(1L, 1.0, doctor, patient, ex);
+        Rating rating2 = new Rating(1L, 2.0, doctor, patient, ex);
+        Rating rating3 = new Rating(1L, 3.0, doctor, patient, ex);
+        Rating rating4 = new Rating(1L, 4.0, doctor, patient, ex);
+        Rating rating5 = new Rating(1L, 5.0, doctor, patient, ex);
+
+        ratingRepository.saveAll(Arrays.asList(rating1, rating2, rating3, rating4, rating5));
+
     }
 }

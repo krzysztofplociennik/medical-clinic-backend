@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 
 @RunWith(SpringRunner.class)
@@ -65,15 +67,32 @@ public class PatientRepositoryTestSuite {
 
     @Test
     public void editData() {
-        Optional<Patient> patient = patientRepository.findById(498L);
-        patient.get().setPassword("jaha");
+        Optional<Patient> patient = patientRepository.findById(497L);
+        patient.get().setPassword("mafe");
         patientRepository.save(patient.get());
     }
 
     @Test
     public void showSpecificData() {
-        System.out.println(patientRepository.findById(549L).get().getRatings().size());
-        System.out.println(patientRepository.findById(549L).get().getReservations().size());
+        System.out.println(patientRepository.findById(497L).get().getUsername());
+    }
+
+    @Test
+    public void populate() {
+        Patient patient1 = new Patient(500L, "1", "1@g.com", "111", "1",
+                "1", new LinkedHashSet<>(), new ArrayList<>());
+        Patient patient2 = new Patient(500L, "2", "2@g.com", "222", "2",
+                "2", new LinkedHashSet<>(), new ArrayList<>());
+        Patient patient3 = new Patient(500L, "3", "3@g.com", "333", "3",
+                "3", new LinkedHashSet<>(), new ArrayList<>());
+        Patient patient4 = new Patient(500L, "4", "4@g.com", "444", "4",
+                "4", new LinkedHashSet<>(), new ArrayList<>());
+        Patient patient5 = new Patient(500L, "5", "5@g.com", "555", "5",
+                "5", new LinkedHashSet<>(), new ArrayList<>());
+
+//        patientRepository.save(patient1);
+
+//        patientRepository.saveAll(Arrays.asList(patient2, patient3, patient4, patient5));
     }
 
 }
