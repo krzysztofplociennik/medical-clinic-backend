@@ -14,7 +14,7 @@ https://github.com/krzysztofplociennik/medical-clinic-frontend
 - spring security
 - vaadin
 
-**Instruction**
+**How to use?***
 
 For a time being there are 3 users with credentials (login | password): 
 1. jamilyn | jaha
@@ -23,6 +23,9 @@ For a time being there are 3 users with credentials (login | password):
 
 Additionally it is possible to login as an administrator: 
 admin | 123
+
+*Currently the website is not deployed.
+
 
 **How does the website look like?**
 
