@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,13 +49,12 @@ public class RatingRepositoryTestSuite {
 
         Rating rating = new Rating();
         ratingRepository.save(rating);
-        Long id = ratingRepository.findAll().get((int) initialSize).getId();
 
         long sizeAfterSaving = ratingRepository.count();
 
         Assert.assertEquals(initialSize + 1, sizeAfterSaving);
 
-        ratingRepository.deleteById(id);
+        ratingRepository.delete(rating);
         long sizeAfterDeleting = ratingRepository.count();
 
         Assert.assertEquals(initialSize, sizeAfterDeleting);
@@ -75,7 +75,6 @@ public class RatingRepositoryTestSuite {
         ratingRepository.save(rating);
         doctorRepository.save(doctor);
         patientRepository.save(patient);
-        Long id = ratingRepository.findAll().get((int) initialSizeOfRatings).getId();
 
         int sizeOfDoctorsRatingsAfterSaving = doctor.getRatings().size();
         int sizeOfPatientsRatingsAfterSaving = patient.getRatings().size();
@@ -84,7 +83,7 @@ public class RatingRepositoryTestSuite {
         Assert.assertEquals(sizeOfPatientsRatingsBeforeSaving + 1, sizeOfPatientsRatingsAfterSaving);
 
         //Clean up
-        ratingRepository.deleteById(id);
+        ratingRepository.delete(rating);
     }
 
     @Test
@@ -97,20 +96,6 @@ public class RatingRepositoryTestSuite {
         rating.setDoctor(doctor);
         rating.setPatient(patient);
         ratingRepository.save(rating);
-    }
-
-    @Test
-    public void deletingLastItem() {
-        if (ratingRepository.count() > 0) {
-            long count = ratingRepository.count();
-            long id = ratingRepository.findAll().get((int) (count - 1)).getId();
-            ratingRepository.deleteById(id);
-        }
-
-        for (Doctor instance : doctorRepository.findAll()) {
-            instance.setRating("Not yet rated");
-            doctorRepository.save(instance);
-        }
     }
 
     @Test
@@ -133,5 +118,21 @@ public class RatingRepositoryTestSuite {
         for (Double rating : sortedPatientSet) {
             System.out.println("rating = " + rating);
         }
+    }
+
+    @Test
+    public void populate() {
+        String ex = "2020-11-10 14:00:00";
+        Patient patient = patientRepository.findById(575L).get();
+        Doctor doctor = doctorRepository.findById(580L).get();
+
+        Rating rating1 = new Rating(1L, 1.0, doctor, patient, ex);
+        Rating rating2 = new Rating(1L, 2.0, doctor, patient, ex);
+        Rating rating3 = new Rating(1L, 3.0, doctor, patient, ex);
+        Rating rating4 = new Rating(1L, 4.0, doctor, patient, ex);
+        Rating rating5 = new Rating(1L, 5.0, doctor, patient, ex);
+
+        ratingRepository.saveAll(Arrays.asList(rating1, rating2, rating3, rating4, rating5));
+
     }
 }
