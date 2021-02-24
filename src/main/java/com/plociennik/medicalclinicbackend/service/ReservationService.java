@@ -20,10 +20,6 @@ public class ReservationService {
     }
 
     public Reservation saveReservation(final Reservation reservation) {
-        reservation.getDoctor().getReservations().add(reservation);
-        reservation.getDoctor().setReservations(reservation.getDoctor().getReservations());
-        reservation.getPatient().getReservations().add(reservation);
-        reservation.getPatient().setReservations(reservation.getPatient().getReservations());
         return repository.save(reservation);
     }
 
