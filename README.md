@@ -1,15 +1,12 @@
 <h1> Medical Clinic Project </h1>
 
-Projekt przychodni medycznej. Jest utrzymany w formie strony 
-internetowej, na którą można się zalogować, umówić wizytę albo 
-zmienić swoje dane.
+This medical clinic project has a form of a website where you can login, setup an appointment or change your credentials.
 
-Projekt ma osobną strukturę dla backendu i frontendu.
-Link do frontendu: https://github.com/krzysztofplociennik/medical-clinic-frontend
+The project has a separate backend and frontend. Backend:
+https://github.com/krzysztofplociennik/medical-clinic-backend
 
 **Stack**
 
-Przy projekcie korzystałem z:
 - java 8
 - hibernate
 - mysql
@@ -17,60 +14,56 @@ Przy projekcie korzystałem z:
 - spring security
 - vaadin
 
-**Instrukcja**
+**How to use?***
 
-Na chwilę obecną jest 3 użytkowników z następującymi danymi = login | hasło: 
+For the time being there are 3 users with credentials (login | password):
 1. jamilyn | jaha
 2. mariof | mafe
 3. ryahn | ryhi
 
-Dodatkowo można też zalogować się jako admin: 
+Additionally it is possible to login as an administrator:
 admin | 123
 
-**Jak wygląda strona?**
+*Currently the website is not deployed.
 
-Widok loginu:
+**How does the website look like?**
 
-![login](src/main/resources/screenshots/login.png)
+Login view:
 
-Dash użytkownika: 
+![login](https://i.imgur.com/XTP1Q5F.png)
 
-![login](src/main/resources/screenshots/user%20-%20dashboard.png)
+User's dash:
 
-Strona rezerwowania wizyt:
+![dash](https://i.imgur.com/fBvBddp.png)
 
-![login](src/main/resources/screenshots/user%20-%20appointments1.png)
+Appointments page:
 
-Można też konkretne wizyty usunąć z bazy, zaznaczając konkretny 
-rekord:
+![reserving1](https://i.imgur.com/CMoKSBb.png)
 
-![login](src/main/resources/screenshots/user%20-%20appointments2.png)
+You can also delete certain records that are highlighted:
 
-Strona dostępnych lekarzy (dodatkowo można sprawdzić, jak zostali 
-ocenieni oraz sami możemy ocenić ich):
+![reserving2](https://i.imgur.com/vnc7z37.png)
 
-![login](src/main/resources/screenshots/user%20-%20doctors.png)
+Available doctors page (you can check their rating as well or rate them yourself):
 
-Na samym końcu mamy możliwość podejrzenia danych zalogowanego
-użytkownika oraz ich edycji (oprócz loginu):
+![doctors](https://i.imgur.com/2MhHQYu.png)
 
-![login](src/main/resources/screenshots/user%20-%20settings.png)
+The last tab gives you the ability to see the credentials of the logged user. There's also an option to edit them (username can't be edited):
 
-Logując się jako admin mamy dodatkowo dostęp do jeszcze jednej 
-zakładki na stronie: 
+![settings](https://i.imgur.com/T2sQC82.png)
 
-![login](src/main/resources/screenshots/admin%20-%20dashboard.png)
+When logging in as an admin you can spot another tab:
 
-Można w niej zobaczyć listę pacjentów, lekarzy, rezerwacji oraz ocen.
-Przy wybraniu konkretnego obiektu pokazują się jego dane:
+![admin](https://i.imgur.com/gsMYZlC.png)
 
-![login](src/main/resources/screenshots/admin%20-%20settings.png)
+Here you can check the patients, doctors, appointments and ratings. While selecting a desired record you can see various information about them:
 
-oraz możliwość usunięcia z bazy danego obiektu (co też poprzedzone jest
-wymaganym potwierdzeniem):
+![admin-delete](https://i.imgur.com/le9Udgg.png)
 
-![login](src/main/resources/screenshots/admin%20-%20prompt.png)
+and if you feel like it you can delete the object as well (and then confirm or cancel the decision):
+
+![admin-prompt](https://i.imgur.com/NrymPJa.png)
 
 **Deploy**
 
-W trakcie...
+In progress...

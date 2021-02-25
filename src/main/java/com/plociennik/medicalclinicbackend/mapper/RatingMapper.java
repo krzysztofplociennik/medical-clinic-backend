@@ -5,6 +5,7 @@ import com.plociennik.medicalclinicbackend.service.DoctorService;
 import com.plociennik.medicalclinicbackend.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.util.Set;
 import java.util.stream.Collectors;
 
