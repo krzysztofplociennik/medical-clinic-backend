@@ -1,11 +1,10 @@
 package com.plociennik.medicalclinicbackend.domain;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity(name = "patients")
 public class Patient {
@@ -15,7 +14,7 @@ public class Patient {
     private String phoneNumber;
     private String username;
     private String password;
-    private Set<Rating> ratings;
+    private List<Rating> ratings;
     private List<Reservation> reservations;
 
     public Patient(Long id,
@@ -24,7 +23,7 @@ public class Patient {
                    String phoneNumber,
                    String username,
                    String password,
-                   Set<Rating> ratings,
+                   List<Rating> ratings,
                    List<Reservation> reservations) {
         this.id = id;
         this.name = name;
@@ -37,12 +36,8 @@ public class Patient {
     }
 
     public Patient() {
-        if (ratings == null) {
-            ratings = new LinkedHashSet<>();
-        }
-        if (reservations == null) {
-            reservations = new ArrayList<>();
-        }
+        ratings = new ArrayList<>();
+        reservations = new ArrayList<>();
     }
 
     @Id
@@ -104,11 +99,11 @@ public class Patient {
             cascade = CascadeType.REMOVE
     )
     @LazyCollection(LazyCollectionOption.FALSE)
-    public Set<Rating> getRatings() {
+    public List<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(Set<Rating> ratings) {
+    public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
 

@@ -1,18 +1,15 @@
 package com.plociennik.medicalclinicbackend.domain;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.OptionalDouble;
-import java.util.Set;
+import java.util.*;
 
 public class DoctorDto {
     private Long id;
     private String name;
     private String mail;
     private String rating;
-    private Set<RatingDto> ratings;
+    private List<RatingDto> ratings;
     private List<ReservationDto> reservations;
 
-    public DoctorDto(Long id, String name, String mail, String rating, Set<RatingDto> ratings, List<ReservationDto> reservations) {
+    public DoctorDto(Long id, String name, String mail, String rating, List<RatingDto> ratings, List<ReservationDto> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -22,7 +19,7 @@ public class DoctorDto {
     }
 
     public DoctorDto() {
-        ratings = new LinkedHashSet<>();
+        ratings = new ArrayList<>();
     }
 
     public Long getId() {
@@ -63,11 +60,11 @@ public class DoctorDto {
         this.rating = rating;
     }
 
-    public Set<RatingDto> getRatings() {
+    public List<RatingDto> getRatings() {
         return ratings;
     }
 
-    public void setRatings(Set<RatingDto> ratings) {
+    public void setRatings(List<RatingDto> ratings) {
         this.ratings = ratings;
     }
 
