@@ -8,19 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Optional;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PatientRepositoryTestSuite {
     @Autowired
     private PatientRepository patientRepository;
-
-    @Test
-    public void findingSize() {
-        long size = patientRepository.count();
-        System.out.println("\nHere's the total number of patients: " + size);
-    }
 
     @Test
     public void savingPatient() {
@@ -53,27 +45,6 @@ public class PatientRepositoryTestSuite {
         Assert.assertEquals(initialSize, sizeAfterDeleting);
     }
 
-    @Test
-    public void initData() {
-    }
 
-    @Test
-    public void deleteSpecificId() {
-        Optional<Patient> patient = patientRepository.findById(550L);
-        patientRepository.delete(patient.get());
-    }
-
-    @Test
-    public void editData() {
-        Optional<Patient> patient = patientRepository.findById(498L);
-        patient.get().setPassword("jaha");
-        patientRepository.save(patient.get());
-    }
-
-    @Test
-    public void showSpecificData() {
-        System.out.println(patientRepository.findById(549L).get().getRatings().size());
-        System.out.println(patientRepository.findById(549L).get().getReservations().size());
-    }
 
 }

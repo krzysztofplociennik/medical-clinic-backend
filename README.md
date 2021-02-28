@@ -1,6 +1,6 @@
 <h1> Medical Clinic Project </h1>
 
-This medical clinic project has a form of a website where you can login, setup an appointment or change your credentials.
+This medical clinic project has a form of a website where you can log in, setup an appointment or change your credentials.
 
 The project has a separate backend and frontend. Backend:
 https://github.com/krzysztofplociennik/medical-clinic-backend
