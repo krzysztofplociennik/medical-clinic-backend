@@ -1,9 +1,10 @@
 <h1> Medical Clinic Project </h1>
 
-This medical clinic project has a form of a website where you can log in, setup an appointment or change your credentials.
+This medical clinic project has a form of a website where you can log in, set up an appointment or change your credentials.
 
-The project has a separate backend and frontend. Backend:
-https://github.com/krzysztofplociennik/medical-clinic-backend
+The project has a separate backend and frontend. 
+
+Frontend: https://github.com/krzysztofplociennik/medical-clinic-frontend
 
 **Stack**
 
@@ -14,14 +15,14 @@ https://github.com/krzysztofplociennik/medical-clinic-backend
 - spring security
 - vaadin
 
-**How to use?***
+**How to use?**
 
 For the time being there are 3 users with credentials (login | password):
 1. jamilyn | jaha
 2. mariof | mafe
 3. ryahn | ryhi
 
-Additionally it is possible to login as an administrator:
+Additionally, it is possible to login as an administrator:
 admin | 123
 
 *Currently the website is not deployed.
