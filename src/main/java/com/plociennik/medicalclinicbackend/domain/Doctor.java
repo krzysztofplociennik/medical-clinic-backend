@@ -10,10 +10,10 @@ public class Doctor {
     private String name;
     private String mail;
     private String rating;
-    private Set<Rating> ratings;
+    private List<Rating> ratings;
     private List<Reservation> reservations;
 
-    public Doctor(Long id, String name, String mail, String rating, Set<Rating> ratings, List<Reservation> reservations) {
+    public Doctor(Long id, String name, String mail, String rating, List<Rating> ratings, List<Reservation> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -23,9 +23,7 @@ public class Doctor {
     }
 
     public Doctor() {
-        if (ratings == null) {
-            ratings = new LinkedHashSet<>();
-        }
+        ratings = new ArrayList<>();
     }
 
     @Id
@@ -77,11 +75,11 @@ public class Doctor {
             cascade = CascadeType.REMOVE
     )
     @LazyCollection(LazyCollectionOption.FALSE)
-    public Set<Rating> getRatings() {
+    public List<Rating> getRatings() {
         return ratings;
     }
 
-    public void setRatings(Set<Rating> ratings) {
+    public void setRatings(List<Rating> ratings) {
         this.ratings = ratings;
     }
 

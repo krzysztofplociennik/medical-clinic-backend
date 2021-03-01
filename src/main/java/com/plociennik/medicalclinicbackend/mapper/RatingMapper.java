@@ -1,11 +1,13 @@
 package com.plociennik.medicalclinicbackend.mapper;
+
 import com.plociennik.medicalclinicbackend.domain.Rating;
 import com.plociennik.medicalclinicbackend.domain.RatingDto;
 import com.plociennik.medicalclinicbackend.service.DoctorService;
 import com.plociennik.medicalclinicbackend.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import java.util.Set;
+
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
@@ -35,7 +37,7 @@ public class RatingMapper {
         );
     }
 
-    public Set<RatingDto> mapToRatingDtoSet(final Set<Rating> ratingSet) {
+    public List<RatingDto> mapToRatingDtoSet(final List<Rating> ratingSet) {
         return ratingSet.stream()
                 .map(rating -> new RatingDto(
                         rating.getId(),
@@ -43,10 +45,10 @@ public class RatingMapper {
                         rating.getDoctor().getId(),
                         rating.getPatient().getId(),
                         rating.getDateTime()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
-    public Set<Rating> mapToRatingSet(final Set<RatingDto> ratingDtoSet) {
+    public List<Rating> mapToRatingSet(final List<RatingDto> ratingDtoSet) {
         return ratingDtoSet.stream()
                 .map(rating -> new Rating(
                         rating.getId(),
@@ -54,6 +56,6 @@ public class RatingMapper {
                         doctorService.getDoctor(rating.getDoctorId()).get(),
                         patientService.getPatient(rating.getPatientId()).get(),
                         rating.getDateTime()))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

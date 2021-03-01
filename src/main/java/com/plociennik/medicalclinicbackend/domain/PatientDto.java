@@ -1,9 +1,7 @@
 package com.plociennik.medicalclinicbackend.domain;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 public class PatientDto {
     private Long id;
@@ -12,11 +10,11 @@ public class PatientDto {
     private String phoneNumber;
     private String username;
     private String password;
-    private Set<RatingDto> ratings;
+    private List<RatingDto> ratings;
     private List<ReservationDto> reservations;
 
     public PatientDto(Long id, String name, String mail, String phoneNumber, String username, String password,
-                      Set<RatingDto> ratings, List<ReservationDto> reservations) {
+                      List<RatingDto> ratings, List<ReservationDto> reservations) {
         this.id = id;
         this.name = name;
         this.mail = mail;
@@ -28,12 +26,8 @@ public class PatientDto {
     }
 
     public PatientDto() {
-        if (ratings == null) {
-            ratings = new LinkedHashSet<>();
-        }
-        if (reservations == null) {
-            reservations = new ArrayList<>();
-        }
+        ratings = new ArrayList<>();
+        reservations = new ArrayList<>();
     }
 
     public Long getId() {
@@ -84,11 +78,11 @@ public class PatientDto {
         this.password = password;
     }
 
-    public Set<RatingDto> getRatings() {
+    public List<RatingDto> getRatings() {
         return ratings;
     }
 
-    public void setRatings(Set<RatingDto> ratings) {
+    public void setRatings(List<RatingDto> ratings) {
         this.ratings = ratings;
     }
 

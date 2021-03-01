@@ -8,21 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 
+=======
+>>>>>>> iss007-testing
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PatientRepositoryTestSuite {
     @Autowired
     private PatientRepository patientRepository;
-
-    @Test
-    public void findingSize() {
-        long size = patientRepository.count();
-        System.out.println("\nHere's the total number of patients: " + size);
-    }
 
     @Test
     public void savingPatient() {
@@ -55,16 +52,8 @@ public class PatientRepositoryTestSuite {
         Assert.assertEquals(initialSize, sizeAfterDeleting);
     }
 
-    @Test
-    public void initData() {
-    }
 
-    @Test
-    public void deleteSpecificId() {
-        Optional<Patient> patient = patientRepository.findById(550L);
-        patientRepository.delete(patient.get());
-    }
-
+<<<<<<< HEAD
     @Test
     public void editData() {
         Optional<Patient> patient = patientRepository.findById(497L);
@@ -94,5 +83,7 @@ public class PatientRepositoryTestSuite {
 
 //        patientRepository.saveAll(Arrays.asList(patient2, patient3, patient4, patient5));
     }
+=======
+>>>>>>> iss007-testing
 
 }
