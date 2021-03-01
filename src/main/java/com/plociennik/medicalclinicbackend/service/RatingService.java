@@ -4,20 +4,15 @@ import com.plociennik.medicalclinicbackend.domain.Rating;
 import com.plociennik.medicalclinicbackend.repository.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-<<<<<<< HEAD
-=======
 import java.util.List;
->>>>>>> iss007-testing
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class RatingService {
     @Autowired
     private RatingRepository repository;
 
-    public Set<Rating> getAllRatings() {
+    public List<Rating> getAllRatings() {
         return repository.findAll();
     }
 
